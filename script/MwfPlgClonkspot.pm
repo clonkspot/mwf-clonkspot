@@ -11,7 +11,7 @@ sub htmlHeader {
 	my %params = @_;
 	my $m = $params{m};
 
-	print "<link rel='stylesheet' href='/css/clonkspot.css'></script>\n";
+	print "<link rel='stylesheet' href='/css/clonkspot.css'>\n";
 
 	return unless $m->{env}{script} eq "topic_show";
 	print "<script type='text/javascript' src='$m->{cfg}{dataPath}/clonkspot.js'></script>\n";
