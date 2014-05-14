@@ -1,0 +1,15 @@
+/* Custom global styles which survive upgrades. */
+
+/* Custom smileys.
+ * Remember not to replace fsmileys.png! */
+.fsm { background-image: url(wipfsmileys.png) }
+.fsm_happy { background-position: 0px 0 }
+.fsm_grin { background-position: -16px 0 }
+.fsm_sad { background-position: -32px 0 }
+.fsm_cry { background-position: -48px 0 }
+.fsm_whatever { background-position: -64px 0 }
+.fsm_shocked { background-position: -80px 0 }
+.fsm_wink { background-position: -96px 0 }
+.fsm_tongue { background-position: -112px 0 }
+.fsm_cool { background-position: -128px 0 }
+.fsm_birthday { height: 22px; background-position: -144px 0 }
