@@ -18,3 +18,8 @@
 div.frm.tpb {
 	margin-top: 10px;
 }
+
+/* Language selection is done in the forum options. */
+header .language {
+	display: none;
+}
