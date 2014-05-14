@@ -13,3 +13,8 @@
 .fsm_tongue { background-position: -112px 0 }
 .fsm_cool { background-position: -128px 0 }
 .fsm_birthday { height: 22px; background-position: -144px 0 }
+
+/* Add some margin after the navigation. */
+div.frm.tpb {
+	margin-top: 10px;
+}
