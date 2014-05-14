@@ -21,7 +21,20 @@ sub top {
 	my %params = @_;
 	my $m = $params{m};
 
-	open my $fh, $headerPaths{$m->{lngModule}}[0] or return;
+	printFile($headerPaths{$m->{lngModule}}[0]);
+}
+
+sub bottom {
+	my %params = @_;
+	my $m = $params{m};
+
+	printFile($headerPaths{$m->{lngModule}}[1]);
+}
+
+sub printFile {
+	my $file = shift;
+
+	open my $fh, $file or return;
 	while (<$fh>) {
 		print;
 	}
