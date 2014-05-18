@@ -36,8 +36,8 @@ sub printFile {
 	my $file = shift;
 
 	open my $fh, $file or return;
-	while (<$fh>) {
-		print;
+	while (my $line = <$fh>) {
+		print $line;
 	}
 	close $fh;
 }
