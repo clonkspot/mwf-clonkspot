@@ -1,5 +1,5 @@
-// Shrink avatars
 $(function() {
+  // Shrink avatars
   $('.ava')
     .hide()
     .each(function() {
@@ -11,4 +11,24 @@ $(function() {
       }
     })
     .show();
+
+  // Inline .txt attachments.
+  $('.amf a[href$=".txt"]').click(function(e) {
+    // Allow middle button clicks.
+    if (e.which === 2) return;
+
+    var el = $(this), content = el.parent().find('.ccl');
+    if (content.length) {
+      content.toggle();
+    } else {
+      content = $('<div class="ccl">Loading...</div>').appendTo(el.parent());
+      $.get(el.attr('href')).then(function(text) {
+        content.html($('<pre>').text(text));
+      }, function() {
+        content.text('Load error');
+      });
+    }
+    e.preventDefault();
+  });
+
 });
