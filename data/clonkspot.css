@@ -23,3 +23,15 @@ div.frm.tpb {
 header .language {
 	display: none;
 }
+
+/* Spoilers via MwfPlgSpoiler.pm */
+.spoiler {
+	background-color: black;
+	color: transparent;
+	transition: background-color 0.3s;
+}
+
+.spoiler:hover {
+	background-color: transparent;
+	color: inherit;
+}
