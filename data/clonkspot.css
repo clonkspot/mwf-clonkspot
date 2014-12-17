@@ -26,12 +26,23 @@ header .language {
 
 /* Spoilers via MwfPlgSpoiler.pm */
 .spoiler {
-	background-color: black;
+	background-color: #3a3a3a;
 	color: transparent;
-	transition: background-color 0.3s;
+}
+
+.spoiler img.fsm {
+	opacity: 0;
+}
+
+.spoiler, .spoiler img.fsm {
+	transition: all 0.3s;
 }
 
 .spoiler:hover {
 	background-color: transparent;
 	color: inherit;
+}
+
+.spoiler:hover img.fsm {
+	opacity: 1;
 }
