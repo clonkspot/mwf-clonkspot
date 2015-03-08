@@ -1,4 +1,6 @@
 $(function() {
+  var wipf = mwf.p.cfg_dataPath + '/wipf.gif', deadwipf = mwf.p.cfg_dataPath + '/deadwipf.gif';
+
   // Shrink avatars
   $('.ava')
     .hide()
@@ -26,6 +28,25 @@ $(function() {
         content.html($('<pre>').text(text));
       }, function() {
         content.text('Load error');
+      });
+    }
+    e.preventDefault();
+  });
+
+  // Toggle embedded thumbnails.
+  $('body').on('click', 'a[href^="attach_show.pl"] > img', function(e) {
+    var img = $(e.target).hide(), other = img.siblings();
+    if (other.length) {
+      other.show();
+    } else {
+      other = $('<img>')
+        .attr('src', wipf)
+        .appendTo(img.parent())
+      $.get(img.parent().attr('href')).then(function(doc) {
+        var src = $($.parseHTML(doc)).filter('.ims').find('img').attr('src');
+        other.attr('src', src || deadwipf);
+      }, function(xhr) {
+        other.attr('src', deadwipf);
       });
     }
     e.preventDefault();
