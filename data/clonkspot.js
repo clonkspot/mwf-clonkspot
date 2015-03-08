@@ -23,11 +23,13 @@ $(function() {
     if (content.length) {
       content.toggle();
     } else {
-      content = $('<div class="ccl">Loading...</div>').appendTo(el.parent());
+      content = $('<div class="ccl"><img src="' + wipf + '" alt="Loading..."></div>').appendTo(el.parent());
       $.get(el.attr('href')).then(function(text) {
         content.html($('<pre>').text(text));
       }, function() {
-        content.text('Load error');
+        content.children('img')
+          .attr('src', deadwipf)
+          .attr('alt', 'Load error')
       });
     }
     e.preventDefault();
