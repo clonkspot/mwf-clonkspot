@@ -14,7 +14,7 @@ sub htmlHeader {
 	print "<link rel='stylesheet' href='$m->{cfg}{dataPath}/clonkspot.css'>\n";
 	print "<link rel='stylesheet' href='/css/clonkspot.css'>\n";
 
-	return unless $m->{env}{script} eq "topic_show";
+	return unless $m->{env}{script} =~ /^(topic_show|forum_overview)$/;
 	print "<script type='text/javascript' src='$m->{cfg}{dataPath}/clonkspot.js'></script>\n";
 }
 
