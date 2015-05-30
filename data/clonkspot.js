@@ -14,25 +14,43 @@ $(function() {
     })
     .show();
 
-  // Inline .txt attachments.
-  $('.amf a[href$=".txt"]').click(function(e) {
+  // Inline some attachments.
+  var extensions = {
+    txt: {
+      match: /\.txt$/,
+      fn: function(href, content) {
+        $.get(href).then(function(text) {
+          content.html($('<pre>').text(text));
+        }, function() {
+          content.children('img')
+            .attr('src', deadwipf)
+            .attr('alt', 'Load error')
+        });
+      }
+    },
+    audio: {
+      match: /\.(wav|ogg|mp3)$/,
+      fn: function(href, content) {
+        content.html('<audio src="'+href+'" controls autoplay><img src="'+deadwipf+'" alt="No audio support"></audio>');
+      }
+    },
+  };
+  $('body').on('click', '.amf a', function(e) {
     // Allow middle button clicks.
     if (e.which === 2) return;
 
-    var el = $(this), content = el.parent().find('.ccl');
+    var el = $(this), href = el.attr('href'), content = el.parent().find('.ccl');
     if (content.length) {
       content.toggle();
     } else {
-      content = $('<div class="ccl"><img src="' + wipf + '" alt="Loading..."></div>').appendTo(el.parent());
-      $.get(el.attr('href')).then(function(text) {
-        content.html($('<pre>').text(text));
-      }, function() {
-        content.children('img')
-          .attr('src', deadwipf)
-          .attr('alt', 'Load error')
-      });
+      for (ext in extensions) {
+        if (extensions[ext].match.test(href)) {
+          content = $('<div class="ccl"><img src="' + wipf + '" alt="Loading..."></div>').appendTo(el.parent());
+          extensions[ext].fn(href, content);
+        }
+      }
     }
-    e.preventDefault();
+    if (content.length) e.preventDefault();
   });
 
   // Toggle embedded thumbnails.
